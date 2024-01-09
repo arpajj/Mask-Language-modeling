@@ -3,7 +3,7 @@ from torch.nn.utils.rnn import pad_sequence
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 from collections import Counter
-
+from tqdm import tqdm
 
 tokens_of_interest = ["true", "false", "unknown"]
 
@@ -64,7 +64,7 @@ def mapping_dicts(target, replacer):
 def prob_distribution_over_vocab_with_batch(model, tokenizer, my_dataloader):
 
     probs_over_batched_dataset = []
-    for bi, batch in enumerate(my_dataloader):
+    for bi, batch in tqdm(enumerate(my_dataloader)):
         if (model.name_or_path == 'roberta-base'): 
             sentences = [sentence[:-len('[MASK]')].strip() for sentence in batch['sentence']]
         elif (model.name_or_path=="gpt2"):

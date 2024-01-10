@@ -40,17 +40,18 @@ if __name__ == '__main__':
     ### -------  Here you can choose a template and formulate the base sentence as you please ------- ###
     #base_sentence = "if [P] is true, the [H] is [MASK]"
     template_dic = [
-        "If {} is 'true', the {} is '[MASK]'",
+        "if {} is 'true', the {} is '[MASK]'",
         "Suppose that {} is: true, then {} is: [MASK]",
         "When {} is true, then {} is [MASK]",
         "When the premise '{}' is: true, then the hypothesis '{}' is: [MASK]",
-        "When the premise {} is true, then the hypothesis {} is: [MASK]"
-        "Considering that the premise '{}' is 'true', then the hypothesis '{}' is: '[MASK]'"
-        "Knowing that the premise '{}' has a label 'true', then the hypothesis '{}' will have a label '[MASK]'"
-        "Regarding that the premise '{}' is: 'true', then the hypothesis '{}' will be '[MASK]'"
+        "When the premise {} is true, then the hypothesis {} is: [MASK]",
+        "Considering that the premise '{}' is 'true', then the hypothesis '{}' is: '[MASK]'",
+        "Knowing that the premise '{}' has a label 'true', then the hypothesis '{}' will have a label '[MASK]'",
+        "Regarding that the premise '{}' is: 'true', then the hypothesis '{}' will be '[MASK]'",
+         "{}: true, {}: [MASK]",
     ]
 
-    template_num = 0
+    template_num = 8
 
     base_sentence = template_dic[template_num]
 
@@ -59,10 +60,10 @@ if __name__ == '__main__':
     dataset_valid = create_template(base_sentence, validation_data)
     dataset_test = create_template(base_sentence, test_data)
     # Specify the file path where you want to save the JSON file
-    dir_path = "templates/template{}".format(template_num)
+    dir_path = "templates/template{}".format(template_num + 1)
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
 
-    save_template('templates/template{}/template_{}_train.json'.format(template_num, template_num), dataset_train)
-    save_template('templates/template{}/template_{}_valid.json'.format(template_num, template_num), dataset_valid)
-    save_template('templates/template{}/template_{}_test.json'.format(template_num, template_num), dataset_test)
+    save_template('templates/template{}/template_train.json'.format(template_num + 1), dataset_train)
+    save_template('templates/template{}/template_valid.json'.format(template_num + 1), dataset_valid)
+    save_template('templates/template{}/template_test.json'.format(template_num + 1), dataset_test)

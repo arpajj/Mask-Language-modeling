@@ -5,6 +5,12 @@ import os
 from tqdm import trange
 
 def create_template(base_sentence, dataset, label):
+    """
+    :param base_sentence: [template, predict_label (e.g. true/false), is_reverse]
+    :param dataset: data
+    :param label: dataset_name
+    Create dataset with templates
+    """
     new_dataset = []
     for item in dataset:
         if label == "sick":
@@ -35,6 +41,9 @@ def save_template(path, text):
 
 
 def create_dataset(dataset_name, template_dic, template_num):
+    """
+    Create dataset with templates, splitting the dataset to (train/valid/test) set.
+    """
     # Load the SICK dataset
     dataset = load_dataset(dataset_name)
 

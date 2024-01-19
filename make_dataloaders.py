@@ -15,6 +15,10 @@ class SICKDataset(Dataset):
         self.data = self.process(load_json(path))
 
     def process(self, data):
+        """
+        Reformat the data to a {dict}. To make easy for model input.
+        :return: List[Dict{}]
+        """
         new_data = []
         for sample in data[:1000]:
             sample['sentence'] = sample['sentence'].replace("[MASK]",

@@ -15,12 +15,10 @@ import argparse
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 END = 9
 
-def load_model(model_name):
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelWithLMHead.from_pretrained(model_name)
-    return tokenizer, model
-
 def predict(tokenizer, model, dataloader):
+    """
+    Dataset prediction with model
+    """
     predict_label = []
     golden_label = []
     tokens = []
@@ -28,9 +26,10 @@ def predict(tokenizer, model, dataloader):
     for sample in tqdm(dataloader):
         tokenized_sentence = sample['sentence']
         tokenized_sentence = tokenized_sentence.to(DEVICE)
+        # predict here
         with torch.no_grad():
             predictions = model(tokenized_sentence)[0]
-        # print(predictions.shape)
+        # find the mask prob
         mask_predictions = torch.softmax(predictions.squeeze()[sample['mask_index']], dim=-1)
 
         # _, ids = torch.topk(mask_predictions, k=5)
@@ -72,6 +71,7 @@ def vote(all_predicts, accs):
     return results
 
 def bi_accuracy(predict, golden_label):
+    # accuracy ignore the neutral label
     correct = 0
     wrong = 0
     correct_0 = 0
@@ -105,6 +105,7 @@ def bi_accuracy(predict, golden_label):
     return acc_0, acc_2
 
 def accuracy(predict, golden_label):
+    # final accuracy
     correct = 0
     wrong = 0
     correct_0 = 0
@@ -137,6 +138,9 @@ def accuracy(predict, golden_label):
     print("Label 2: {:.4f}".format(correct_2 / (correct_2 + wrong_2 + 1e-4)))
 
 def valid(dataset_name, tokenizer, model):
+    """
+    get the predictions in validation set
+    """
     all_predicts = []
     golden = []
     accs = []
@@ -159,6 +163,9 @@ def valid(dataset_name, tokenizer, model):
     return all_predicts, golden, accs
 
 def test(dataset_name, tokenizer, model):
+    """
+    get the predictions in test set
+    """
     all_predicts = []
     golden = []
     accs = []
@@ -212,6 +219,8 @@ if __name__ == '__main__':
     print(val_predicts.shape)
     print(val_golden.shape)
 
+    # train a decision tree for ensemble
+
     DT = DecisionTreeClassifier()
     DT.fit(val_predicts, val_golden)
 
@@ -223,6 +232,7 @@ if __name__ == '__main__':
     print(_test_predicts.shape)
     print(_test_golden.shape)
 
+    # ensemble
     predictions = DT.predict(_test_predicts)
     print(predictions)
     accuracy(predictions, test_golden)

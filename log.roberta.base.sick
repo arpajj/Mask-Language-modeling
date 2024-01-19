@@ -1,0 +1,84 @@
+Dataset Path: templates/sick/template1/template_valid.json
+100%|██████████| 495/495 [00:10<00:00, 47.72it/s]
+The accuracy score is: 0.2545
+Label 0 is: 0.8671
+Label 1: 0.0000
+Label 2: 0.0282
+Dataset Path: templates/sick/template2/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 52.46it/s]
+The accuracy score is: 0.2909
+Label 0 is: 0.9860
+Label 1: 0.0000
+Label 2: 0.0423
+Dataset Path: templates/sick/template3/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 52.11it/s]
+The accuracy score is: 0.2646
+Label 0 is: 0.8322
+Label 1: 0.0000
+Label 2: 0.1690
+Dataset Path: templates/sick/template4/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 51.86it/s]
+The accuracy score is: 0.3030
+Label 0 is: 0.6434
+Label 1: 0.0000
+Label 2: 0.8169
+Dataset Path: templates/sick/template5/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 53.17it/s]
+The accuracy score is: 0.3354
+Label 0 is: 0.9441
+Label 1: 0.0000
+Label 2: 0.4366
+Dataset Path: templates/sick/template6/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 52.30it/s]
+The accuracy score is: 0.2970
+Label 0 is: 0.6364
+Label 1: 0.0000
+Label 2: 0.7887
+Dataset Path: templates/sick/template7/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 52.35it/s]
+The accuracy score is: 0.1515
+Label 0 is: 0.0280
+Label 1: 0.0000
+Label 2: 1.0000
+Dataset Path: templates/sick/template8/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 52.32it/s]
+The accuracy score is: 0.1434
+Label 0 is: 0.0000
+Label 1: 0.0000
+Label 2: 1.0000
+Dataset Path: templates/sick/template9/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 53.42it/s]
+The accuracy score is: 0.3394
+Label 0 is: 0.9301
+Label 1: 0.0000
+Label 2: 0.4930
+Dataset Path: templates/sick/template10/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 53.13it/s]
+The accuracy score is: 0.3576
+Label 0 is: 0.9231
+Label 1: 0.0000
+Label 2: 0.6338
+Dataset Path: templates/sick/template11/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 52.97it/s]
+The accuracy score is: 0.3758
+Label 0 is: 0.8881
+Label 1: 0.0000
+Label 2: 0.8310
+Dataset Path: templates/sick/template12/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 54.17it/s]
+The accuracy score is: 0.1818
+Label 0 is: 0.1888
+Label 1: 0.0036
+Label 2: 0.8732
+Dataset Path: templates/sick/template13/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 54.05it/s]
+The accuracy score is: 0.3596
+Label 0 is: 0.0000
+Label 1: 0.4342
+Label 2: 0.7887
+Dataset Path: templates/sick/template14/template_valid.json
+100%|██████████| 495/495 [00:09<00:00, 53.94it/s]
+The accuracy score is: 0.5636
+Label 0 is: 0.1888
+Label 1: 0.8256
+Label 2: 0.2817

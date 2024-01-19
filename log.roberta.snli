@@ -1,0 +1,88 @@
+Running on gpu080
+Thu Jan 18 07:46:00 EST 2024
+/h/wkchen/.conda/envs/pytorch/lib/python3.7/site-packages/transformers/models/auto/modeling_auto.py:1299: FutureWarning: The class `AutoModelWithLMHead` is deprecated and will be removed in a future version. Please use `AutoModelForCausalLM` for causal language models, `AutoModelForMaskedLM` for masked language models and `AutoModelForSeq2SeqLM` for encoder-decoder models.
+  FutureWarning,
+Dataset Path: templates/snli/template1/template_valid.json
+100%|██████████| 1000/1000 [00:33<00:00, 29.85it/s]
+The accuracy score is: 0.3440
+Label 0 is: 0.5200
+Label 1: 0.0000
+Label 2: 0.5014
+Dataset Path: templates/snli/template2/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 30.77it/s]
+The accuracy score is: 0.3460
+Label 0 is: 0.1723
+Label 1: 0.0000
+Label 2: 0.8309
+Dataset Path: templates/snli/template3/template_valid.json
+100%|██████████| 1000/1000 [00:31<00:00, 31.29it/s]
+The accuracy score is: 0.4080
+Label 0 is: 0.4800
+Label 1: 0.0000
+Label 2: 0.7221
+Dataset Path: templates/snli/template4/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 30.95it/s]
+The accuracy score is: 0.3890
+Label 0 is: 0.2123
+Label 1: 0.0000
+Label 2: 0.9169
+Dataset Path: templates/snli/template5/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 31.09it/s]
+The accuracy score is: 0.3320
+Label 0 is: 0.9631
+Label 1: 0.0000
+Label 2: 0.0544
+Dataset Path: templates/snli/template6/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 30.80it/s]
+The accuracy score is: 0.3470
+Label 0 is: 0.0800
+Label 1: 0.0000
+Label 2: 0.9198
+Dataset Path: templates/snli/template7/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 30.92it/s]
+The accuracy score is: 0.4790
+Label 0 is: 0.6708
+Label 1: 0.0000
+Label 2: 0.7479
+Dataset Path: templates/snli/template8/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 31.01it/s]
+The accuracy score is: 0.4270
+Label 0 is: 0.4492
+Label 1: 0.0000
+Label 2: 0.8052
+Dataset Path: templates/snli/template9/template_valid.json
+100%|██████████| 1000/1000 [00:31<00:00, 31.68it/s]
+The accuracy score is: 0.3670
+Label 0 is: 0.7877
+Label 1: 0.0092
+Label 2: 0.3095
+Dataset Path: templates/snli/template10/template_valid.json
+100%|██████████| 1000/1000 [00:31<00:00, 31.31it/s]
+The accuracy score is: 0.3730
+Label 0 is: 0.5785
+Label 1: 0.0061
+Label 2: 0.5244
+Dataset Path: templates/snli/template11/template_valid.json
+100%|██████████| 1000/1000 [00:31<00:00, 31.40it/s]
+The accuracy score is: 0.3860
+Label 0 is: 0.7600
+Label 1: 0.0184
+Label 2: 0.3811
+Dataset Path: templates/snli/template12/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 31.07it/s]
+The accuracy score is: 0.3400
+Label 0 is: 0.0862
+Label 1: 0.0828
+Label 2: 0.8166
+Dataset Path: templates/snli/template13/template_valid.json
+100%|██████████| 1000/1000 [00:31<00:00, 31.27it/s]
+The accuracy score is: 0.3960
+Label 0 is: 0.2185
+Label 1: 0.1135
+Label 2: 0.8252
+Dataset Path: templates/snli/template14/template_valid.json
+100%|██████████| 1000/1000 [00:32<00:00, 31.25it/s]
+The accuracy score is: 0.3730
+Label 0 is: 0.1323
+Label 1: 0.3497
+Label 2: 0.6189

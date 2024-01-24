@@ -16,11 +16,18 @@ def create_template(base_sentence, dataset, label):
         if label == "sick":
             premise = item['sentence_A'][0].lower() + item['sentence_A'][1:]
             hypothesis = item['sentence_B'][0].lower() + item['sentence_B'][1:]
-        else:
+        elif label == "snli":
             premise = item['premise'][0].lower() + item['premise'][1:-1]
             hypothesis = item['hypothesis'][0].lower() + item['hypothesis'][1:-1]
             if item['label'] == -1:
                 continue
+        elif label == "mnli":
+            premise = item['text1'][0].lower() + item['text1'][1:-1]
+            hypothesis = item['text2'][0].lower() + item['text2'][1:-1]
+            if item['label'] == -1:
+                continue
+        else:
+            assert False
         if base_sentence[2]:
             template = base_sentence[0].format(hypothesis, premise)
         else:
@@ -46,16 +53,17 @@ def create_dataset(dataset_name, template_dic, template_num):
     """
     # Load the SICK dataset
     dataset = load_dataset(dataset_name)
-
+    if dataset_name == "SetFit/mnli":
+        dataset_name = "mnli"
     # Access the training, validation, and test splits
-    # train_data = dataset["train"]
+    train_data = dataset["train"]
     validation_data = dataset["validation"]
     test_data = dataset["test"]
 
     base_sentence = template_dic[template_num]
 
     # Create the template in the right form
-    # dataset_train = create_template(base_sentence, train_data, label=dataset_name)
+    dataset_train = create_template(base_sentence, train_data, label=dataset_name)
     dataset_valid = create_template(base_sentence, validation_data, label=dataset_name)
     dataset_test = create_template(base_sentence, test_data, label=dataset_name)
     # Specify the file path where you want to save the JSON file
@@ -67,7 +75,7 @@ def create_dataset(dataset_name, template_dic, template_num):
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
 
-    # save_template('templates/{}/template{}/template_train.json'.format(dataset_name, template_num + 1), dataset_train)
+    save_template('templates/{}/template{}/template_train.json'.format(dataset_name, template_num + 1), dataset_train)
     save_template('templates/{}/template{}/template_valid.json'.format(dataset_name, template_num + 1), dataset_valid)
     save_template('templates/{}/template{}/template_test.json'.format(dataset_name, template_num + 1), dataset_test)
 
@@ -134,6 +142,7 @@ if __name__ == '__main__':
     ]
 
     for i in trange(0, len(template_dic)):
-        create_dataset("sick", template_dic, i)
+        # create_dataset("sick", template_dic, i)
         create_dataset("snli", template_dic, i)
+        create_dataset("SetFit/mnli", template_dic, i)
 

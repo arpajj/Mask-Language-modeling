@@ -146,7 +146,7 @@ def valid(dataset_name, tokenizer, model):
     accs = []
     for i in trange(1, END):
         # for j in range(i, i+4):
-        template_path = 'templates/{}/template{}/template_valid.json'.format(dataset_name, i)
+        template_path = 'templates/{}/template{}/template_train.json'.format(dataset_name, i)
         dataset = SICKDataset(tokenizer, template_path)
         print("Dataset Path: {}".format(template_path))
         print("Dataset Example: ")
@@ -156,13 +156,14 @@ def valid(dataset_name, tokenizer, model):
         pred, gold, acc = predict(tokenizer, model, dataloader)
         if min(acc) < 0.20:
             print("Useless prediction, skip!")
+            acc = (0.0, 0.0)
         all_predicts.append(pred)
         golden = gold
         accs.append(acc)
     #     accuracy(vote(all_predicts, accs), golden)
     return all_predicts, golden, accs
 
-def test(dataset_name, tokenizer, model):
+def test(dataset_name, tokenizer, model, tag="test"):
     """
     get the predictions in test set
     """
@@ -171,7 +172,7 @@ def test(dataset_name, tokenizer, model):
     accs = []
     for i in trange(1, END):
         # for j in range(i, i+4):
-        template_path = 'templates/{}/template{}/template_test.json'.format(dataset_name, i)
+        template_path = 'templates/{}/template{}/template_{}.json'.format(dataset_name, i, tag)
         dataset = SICKDataset(tokenizer, template_path)
         print("Dataset Path: {}".format(template_path))
         print("Dataset Example: ")
@@ -225,7 +226,7 @@ if __name__ == '__main__':
     DT.fit(val_predicts, val_golden)
 
     # Make predictions on the test set
-    test_predicts, test_golden = test(dataset_name, tokenizer, model)
+    test_predicts, test_golden = test(dataset_name, tokenizer, model, tag="valid")
     _test_predicts = np.array(test_predicts).T
     _test_predicts = np.concatenate((_test_predicts, np.repeat(val_accs, _test_predicts.shape[0], axis=0)), axis=1)
     _test_golden = np.array(test_golden)

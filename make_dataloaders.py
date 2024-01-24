@@ -12,7 +12,10 @@ def load_json(path):
 class SICKDataset(Dataset):
     def __init__(self, tokenizer, path):
         self.tokenizer = tokenizer
-        self.data = self.process(load_json(path))
+        if "train" in path:
+            self.data = self.process(load_json(path)[:10000])
+        else:
+            self.data = self.process(load_json(path))
 
     def process(self, data):
         """
@@ -20,7 +23,7 @@ class SICKDataset(Dataset):
         :return: List[Dict{}]
         """
         new_data = []
-        for sample in data[:1000]:
+        for sample in data:
             sample['sentence'] = sample['sentence'].replace("[MASK]",
                                                             self.tokenizer.convert_ids_to_tokens(
                                                                 self.tokenizer.mask_token_id))

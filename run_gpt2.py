@@ -128,7 +128,7 @@ def accuracy(predict, golden_label):
     print("Label 1: {:.4f}".format(correct_1 / (correct_1 + wrong_1 + 1e-4)))
     print("Label 2: {:.4f}".format(correct_2 / (correct_2 + wrong_2 + 1e-4)))
 
-def valid(dataset_name, tokenizer, model):
+def valid(dataset_name, tokenizer, model, START):
     """
     get the predictions in validation set
     """
@@ -136,7 +136,7 @@ def valid(dataset_name, tokenizer, model):
     golden = []
     accs = []
     skip_num = []
-    for i in trange(1, END):
+    for i in trange(START, END):
         # for j in range(i, i+4):
         template_path = 'templates/{}/template{}/template_train.json'.format(dataset_name, i)
         dataset = SICK_GPT2_Dataset(tokenizer, template_path)
@@ -198,13 +198,13 @@ if __name__ == '__main__':
 
     model_name = args.model
     dataset_name = args.dataset
-    template_num = args.template
+    START = args.template
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelWithLMHead.from_pretrained(model_name)
     model = model.to(DEVICE)
 
-    val_predicts, val_golden, val_accs, skip_num = valid(dataset_name, tokenizer, model)
+    val_predicts, val_golden, val_accs, skip_num = valid(dataset_name, tokenizer, model, START)
 
     val_predicts = np.array(val_predicts).T
     print(val_accs)

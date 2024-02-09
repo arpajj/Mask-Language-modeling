@@ -99,10 +99,10 @@ if __name__ == '__main__':
     # ]
 
     template_dic = [
-        ["When {} is true, then {} is [MASK].", [" true", " false"], False],
-        ["When {} is false, then {} is [MASK].", [" false", " true"], False],
-        ["When {} is true, then {} is [MASK].", [" true", " false"], True],
-        ["When {} is false, then {} is [MASK].", [" false", " true"], True],
+        ["if {} is true, then {} is [MASK].", [" true", " false"], False],
+        ["if {} is false, then {} is [MASK].", [" false", " true"], False],
+        ["if {} is true, then {} is [MASK].", [" true", " false"], True],
+        ["if {} is false, then {} is [MASK].", [" false", " true"], True],
 
         ["Suppose that {} is: true, then {} is: [MASK]", [" true", " false"], False],
         ["Suppose that {} is: false, then {} is: [MASK]", [" false", " true"], False],

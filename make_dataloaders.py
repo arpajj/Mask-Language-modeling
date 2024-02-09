@@ -13,7 +13,7 @@ class SICKDataset(Dataset):
     def __init__(self, tokenizer, path):
         self.tokenizer = tokenizer
         if "train" in path:
-            self.data = self.process(load_json(path)[:10000])
+            self.data = self.process(load_json(path)[:1000])
         else:
             self.data = self.process(load_json(path))
 
@@ -84,6 +84,37 @@ def collate_fn(batch):
         "target_ids": batch[0]['target_ids'],
         "label": batch[0]['label']
     }
+
+class SICK_GPT2_Dataset(Dataset):
+    def __init__(self, tokenizer, path):
+        self.tokenizer = tokenizer
+        if "train" in path:
+            self.data = self.process(load_json(path)[:1000])
+        else:
+            self.data = self.process(load_json(path))
+
+    def process(self, data):
+        new_data = []
+        for sample in data:
+            sample['sentence'] = sample['sentence'][:sample['sentence'].find("[MASK]")]
+            tokenized_sentence = self.tokenizer.encode(sample['sentence'], return_tensors='pt')
+            target_ids = [self.tokenizer.encode(target) for target in sample['predict_label']]
+            label = sample['label']
+            new_data.append({
+                "sentence": tokenized_sentence,
+                "sentence_str": sample['sentence'],
+                "mask_index": [],
+                "target_label": sample['predict_label'],
+                "target_ids": target_ids,
+                "label": label
+            })
+        return new_data
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        return self.data[idx]
 
 class SICK_t5_Dataset(Dataset):
     def __init__(self, tokenizer, path):

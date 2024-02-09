@@ -1,5 +1,5 @@
 # import main
-from make_dataloaders import SICKDataset, collate_fn
+from make_dataloaders import SICK_GPT2_Dataset, collate_fn
 from transformers import AutoTokenizer, AutoModelWithLMHead, AutoConfig
 from torch.utils.data import DataLoader
 from utils import *
@@ -28,11 +28,10 @@ def predict(tokenizer, model, dataloader):
         tokenized_sentence = tokenized_sentence.to(DEVICE)
         # predict here
         with torch.no_grad():
-            predictions = model(tokenized_sentence)[0]
-        # find the mask prob
-        mask_predictions = torch.softmax(predictions.squeeze()[sample['mask_index']], dim=-1)
-
-        predict_label.append(torch.argmax(mask_predictions[torch.tensor(sample['target_ids'])]).item())
+            logits = model(tokenized_sentence).logits
+        last_token_logits = logits[0, -1, :]
+        probabilities = torch.nn.functional.softmax(last_token_logits, dim=0)
+        predict_label.append(torch.argmax(probabilities[torch.tensor(sample['target_ids'])]).item())
         # print(predict_prob[-1])
         golden_label.append(sample['label'])
 
@@ -140,7 +139,7 @@ def valid(dataset_name, tokenizer, model):
     for i in trange(1, END):
         # for j in range(i, i+4):
         template_path = 'templates/{}/template{}/template_train.json'.format(dataset_name, i)
-        dataset = SICKDataset(tokenizer, template_path)
+        dataset = SICK_GPT2_Dataset(tokenizer, template_path)
         print("Dataset Path: {}".format(template_path))
         print("Dataset Example: ")
         print(dataset[0]['sentence_str'])
@@ -170,7 +169,7 @@ def test(dataset_name, tokenizer, model, skip_num, tag="test"):
             print("Skipping!!!")
             continue
         template_path = 'templates/{}/template{}/template_{}.json'.format(dataset_name, i, tag)
-        dataset = SICKDataset(tokenizer, template_path)
+        dataset = SICK_GPT2_Dataset(tokenizer, template_path)
         print("Dataset Path: {}".format(template_path))
         print("Dataset Example: ")
         print(dataset[0]['sentence_str'])

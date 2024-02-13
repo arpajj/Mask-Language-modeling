@@ -2,6 +2,7 @@
 
 This is a project where we apply Mask Language Modeling (MLM) after using a prompting technique 
 in order to perform Natural Language Inference (NLI). The models used are BERT, RoBERTa, GPT2 and BART.
+The datasets used are SICK, SNLI and MNLI.
 
 A)
 Create templates by using `python create_templates.py`.

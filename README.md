@@ -12,10 +12,10 @@ To use GPT-2 model, run `python run_gpt2.py --model MODEL_NAME --dataset DATASET
 To use BERT, RoBERTa and BART model, run `python runner.py --model MODEL_NAME --dataset DATASET_NAME --template START`.
 
 B)
-To run the analysis part of the paper go the folder "analysis".
-Create templates by using "python create_templates.py" and entering the name of the dataset (sick, snli, multi_nli).
+To run the analysis part of the paper go the folder "analysis". Create templates by using "python create_templates.py" (inside the "Helpers"  
+folder) and entering the name of the dataset (sick, snli, multi_nli).
 
-Make the dataloaders my running "make_dataloaders.py" and again the name of the dataset used. It also returns all the short and long dataloaders
+Make the dataloaders my running "python make_dataloaders.py" (inside the "Helpers" folder) and again the name of the dataset used. It also returns all the short and long dataloaders
 
 Important tokens: For the extraction of tokens from the validation set run the "runner_valid.ipynb" and copy the tokens produced in the end
 for the 3 labels. Then paste them into the "runner.ipynb" so to run the section of "Important Tokens" for the test set.
